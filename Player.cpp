@@ -1,28 +1,29 @@
-#include "Player.h"
+ï»¿#include "Player.h"
 #include "ImGuiManager.h"
 #include "Vector3.h"
 #include <cassert>
 
-//‰Šú‰»
+
+//åˆæœŸåŒ–
 void Player::Initialize(Model* model, uint32_t textureHandle) {
 
-	//NULLƒ|ƒCƒ“ƒ^ƒ`ƒFƒbƒN
+	//NULLãƒã‚¤ãƒ³ã‚¿ãƒã‚§ãƒƒã‚¯
 	assert(model);
 
-	//ƒƒ“ƒo•Ï”‚ÉŽó‚¯Žæ‚Á‚½’l‚ð‘ã“ü
+	//ãƒ¡ãƒ³ãƒå¤‰æ•°ã«å—ã‘å–ã£ãŸå€¤ã‚’ä»£å…¥
 	textureHandle_ = textureHandle;
 	model_ = model;
 
-	//ƒ[ƒ‹ƒh•ÏŠ·‚Ì‰Šú‰»
+	//ãƒ¯ãƒ¼ãƒ«ãƒ‰å¤‰æ›ã®åˆæœŸåŒ–
 	worldTransform_.Initialize();
 }
 
-//XV
+//æ›´æ–°
 void Player::Update() {}
 
-//•`‰æ
+//æç”»
 void Player::Draw(const ViewProjection& viewProjection) {
-	//3Dƒ‚ƒfƒ‹‚ð•`‰æ
+	//3Dãƒ¢ãƒ‡ãƒ«ã‚’æç”»
 	model_->Draw(worldTransform_, viewProjection, textureHandle_);
 }
 
