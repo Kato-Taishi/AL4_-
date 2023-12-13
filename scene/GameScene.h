@@ -10,6 +10,8 @@
 #include "WorldTransform.h"
 #include "Player.h"
 #include <memory>
+#include <Ground.h>
+#include <Skydome.h>
 /// <summary>
 /// ゲームシーン
 /// </summary>
@@ -58,7 +60,14 @@ private: // メンバ変数
 	//テクスチャーハンドル
 	uint32_t textureHandle_ = 0u;
 	//モデルデータ
-	std::unique_ptr<Model> model_;
-	//自キャラ
+	std::unique_ptr<Model> modelFighter_;
+	//3Dモデル
+	std::unique_ptr<Model> modelSkydome_;
+	//3Dモデル
+	std::unique_ptr<Model> modelGround_;
+
+	//クラス
 	std::unique_ptr<Player> player_;
+	std::unique_ptr<Ground> ground_;
+	std::unique_ptr<Skydome> skydome_;
 };

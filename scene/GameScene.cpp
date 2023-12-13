@@ -1,6 +1,7 @@
 ﻿#include "GameScene.h"
 #include "TextureManager.h"
 #include <cassert>
+#include <Player.cpp>
 
 GameScene::GameScene() {}
 
@@ -23,16 +24,25 @@ void GameScene::Initialize() {
 
 
 	//ビュープロジェクション
+	viewProjection_.farZ = 2000.0f;
+	viewProjection_.translation_ = {0.0f, 2.0f, -10.0f};
 	viewProjection_.Initialize();
 
 	textureHandle_ = TextureManager::Load("mario.jpg");
 
-	model_.reset(Model::Create());
+	modelSkydome_.reset(Model::CreateFromOBJ("skydome", true));
+	modelGround_.reset(Model::CreateFromOBJ("ground", true));
+	modelFighter_.reset(Model::CreateFromOBJ("float", true));
+
 
 	player_ = std::make_unique<Player>();
+	ground_ = std::make_unique<Ground>();
+	skydome_ = std::make_unique<Skydome>();
 
-	
-	player_->Initialize(model_.get(), textureHandle_);
+
+	player_->Initialize(modelFighter_.get());
+	ground_->Initialize(modelGround_.get());
+	skydome_->Initialize(modelSkydome_.get());
 }
 
 void GameScene::Update() {}
@@ -67,6 +77,8 @@ void GameScene::Draw() {
 
 	//自キャラの描画
 	player_->Draw(viewProjection_);
+	ground_->Draw(viewProjection_);
+	skydome_->Draw(viewProjection_);
 
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();

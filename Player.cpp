@@ -1,6 +1,6 @@
 ﻿#include "Player.h"
-#include "ImGuiManager.h"
-#include "Vector3.h"
+//#include "ImGuiManager.h"
+//#include "Vector3.h"
 #include <cassert>
 
 
@@ -11,7 +11,7 @@ void Player::Initialize(Model* model, uint32_t textureHandle) {
 	assert(model);
 
 	//メンバ変数に受け取った値を代入
-	textureHandle_ = textureHandle;
+	/*textureHandle_ = textureHandle;*/
 	model_ = model;
 
 	//ワールド変換の初期化
@@ -24,6 +24,6 @@ void Player::Update() {}
 //描画
 void Player::Draw(const ViewProjection& viewProjection) {
 	//3Dモデルを描画
-	model_->Draw(worldTransform_, viewProjection, textureHandle_);
+	model_->Draw(worldTransform_, viewProjection);
 }
 
